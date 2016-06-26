@@ -9,7 +9,7 @@ module Organization
     private 
 
     def create_organization 
-    	@organization ||= Organization.new(organization_params)
+    	@organization ||= ::Organization.new(organization_params)
 
     	if organization.save
     		context.organization = @organization

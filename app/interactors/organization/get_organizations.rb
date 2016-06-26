@@ -3,7 +3,7 @@ module Organization
     include Interactor
 
     def call
-      context.organizations = Organization.all
+      context.organizations = ::Organization.all
     end
   end
 end
