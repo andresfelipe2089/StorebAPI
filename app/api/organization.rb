@@ -10,19 +10,26 @@ class API::Organization < Grape::API
   	desc 'Return all the organizations'
   	get do
   	  result = GetOrganizations.call
-  	  error!(result.error, :not_found) if result.failure?
+      error!(result.error, :not_found) if result.failure?
+      present results.organizations, with: Organization
   	end
+
 
   	desc 'Return an Organization'
   	params do
-  	  requires :id, type: String, desc: 'organization id'
+  	  requires :id, 
+                type: Integer, 
+                desc: 'organization id',
+                values: (1..1_000_000)
   	end
   	route_param :id do
   	  get do
-  	    result = GetOrganization.call
+  	    result = GetOrganization.call(organization_id: params[:id])
   	    error!(result.error, :not_found) if result.failure?
+        Organization.represent(result.organization)
   	  end
   	end 
+
 
   	desc 'Create an organization'
   	params do
@@ -40,14 +47,14 @@ class API::Organization < Grape::API
   	  result = CreateOrganization.call(title: params[:title],
                                        description: params[:description],
                                        type: params[:type] )
-  	  error!(result.error, :not_found) if result.failure? 
+  	  error!(result.error, :unprocessable_entity) if result.failure? 
   	end
 
 
     desc 'update an organization'
     params do
       requires :id,
-                type: String, 
+                type: Integer, 
                 desc: 'Organizations ID.'
       optional :title, 
                 type: String,
@@ -59,24 +66,30 @@ class API::Organization < Grape::API
                 type: String,
                 desc: 'type of company' 
     end
-    put ':id' do
-      result = UpdateOrganization.call(title: params[:title],
-                                       description: params[:description],
-                                       type: params[:type] )
-      error!(result.error, :not_found) if result.failure? 
+    route_param :id do
+      put do
+        result = UpdateOrganization.call(title: params[:title],
+                                         description: params[:description],
+                                         type: params[:type] )
+        error!(result.error, :unprocessable_entity) if result.failure? 
+      end
     end
-
+    
 
     desc 'Delete an Organization'
     params do
       requires :id,
-                type: String, 
-                desc: 'Organizations ID.'
+                type: Integer, 
+                desc: 'Organizations ID.',
+                values: (1..1_000_000)
     end
-    delete ':id' 
-      result = DeleteOrganization.call(id: params[:id])
-      error!(result.error, :not_found) if result.failure? 
+    route_param :id do
+      delete do
+        result = DeleteOrganization.call(organization_id: params[:id])
+        error!(result.error, :unprocessable_entity) if result.failure? 
+      end
     end
+    
     
   end
 end
