@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @space.title %>
+</p>
+
+<p>
+  <strong>Price per day:</strong>
+  <%= @space.price_per_day %>
+</p>
+
+<p>
+  <strong>Price per week:</strong>
+  <%= @space.price_per_week %>
+</p>
+
+<p>
+  <strong>Price per month:</strong>
+  <%= @space.price_per_month %>
+</p>
+
+<%= link_to 'Edit', edit_space_path(@space) %> |
+<%= link_to 'Back', spaces_path %>
