@@ -21,7 +21,7 @@ module Organization
     end
 
     def organization
-      @organization ||= Organization.find_by(id: organization_id)
+      @organization ||= ::Organization.find_by(id: organization_id)
     end
 
     def organization_id
