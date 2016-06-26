@@ -8,7 +8,7 @@ class GetOrganization
   private 
 
   def get_organization 
-  	organization = Organization.find(id: organization_id)
+  	organization = Organization.find_by(id: organization_id)
   	
   	if organization.present?
   	  context.organization = organization

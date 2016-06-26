@@ -1,28 +1,27 @@
-class DeleteOrganization
-  include Interactor
+module Organization
+  class DeleteOrganization
+    include Interactor
 
-  def call
-    delete_organization || fail_attempt
-  end
+    def call
+      (organization && delete_organization) || fail_attempt
+    end
 
-  private
+    private
 
-  def delete_organization
-  	organization = Organization.find(:id organization_id).destroy
-  	if organization.destroyed?
-  	  return true
-  	end
-  end
+    def delete_organization
+      return true if organization.destroy && organization.destroyed?
+    end
 
-  def fail_attempt
-    context.fail!(error: "organization cannot be deleted #{organization_errors}")
-  end
+    def fail_attempt
+      context.fail!(error: "Organization cannot be deleted. ID #{organization_id} not found")
+    end
 
-  def organization_errors
-  	organization.errors.full_messages.to_sentence
-  end
+    def organization
+      @organization ||= Organization.find_by(id: organization_id)
+    end
 
-  def organization_id
-  	context.organization_id
+    def organization_id
+      context.organization_id
+    end
   end
 end
