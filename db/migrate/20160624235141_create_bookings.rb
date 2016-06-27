@@ -6,6 +6,7 @@ class CreateBookings < ActiveRecord::Migration
       t.decimal :price
       t.references :space
       t.references :organization
+      
       t.timestamps null: false
     end
   end

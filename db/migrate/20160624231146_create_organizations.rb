@@ -4,7 +4,7 @@ class CreateOrganizations < ActiveRecord::Migration
       t.string :title
       t.text :description
       t.string :type
-
+      
       t.timestamps null: false
     end
   end
