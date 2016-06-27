@@ -24,8 +24,11 @@ module StorebAPI
     config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
     config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
 
+
+
     config.paths.add File.join('app', 'interactors'), glob: File.join('**', '*.rb')
     config.autoload_paths += Dir[Rails.root.join('app', 'interactors', '*')]
+    
     config.active_record.raise_in_transactional_callbacks = true
   end
 end
