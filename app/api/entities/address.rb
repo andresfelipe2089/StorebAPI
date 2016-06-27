@@ -1,4 +1,4 @@
-module API::Entities
+module Entities
   class Address < Grape::Entity
   	expose :street, documentation: { type: 'string', desc: 'street' }
   	expose :zip, documentation: { type: 'string', desc: 'zip code' }

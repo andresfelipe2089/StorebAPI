@@ -22,12 +22,12 @@ module StorebAPI
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
-    config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
+    #config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
 
 
 
     config.paths.add File.join('app', 'interactors'), glob: File.join('**', '*.rb')
-    config.autoload_paths += Dir[Rails.root.join('app', 'interactors', '*')]
+    #config.autoload_paths += Dir[Rails.root.join('app', 'interactors', '*')]
     
     config.active_record.raise_in_transactional_callbacks = true
   end

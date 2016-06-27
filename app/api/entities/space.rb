@@ -1,4 +1,4 @@
-module API::Entities
+module Entities
   class Space < Grape::Entity
   	expose :store, using: :Store
   	expose :title, documentation: { type: 'string', desc: 'title of the space' }

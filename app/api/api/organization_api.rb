@@ -1,4 +1,4 @@
-class API::Organization < Grape::API
+class API::OrganizationApi < Grape::API
 
   #Api Format, configures the format to json
   format :json
@@ -11,7 +11,7 @@ class API::Organization < Grape::API
   	get do
   	  result = Org::GetOrganizations.call
       error!(result.error, :not_found) if result.failure?
-      present results.organizations, with: Organization
+      present result.organizations, with: Entities::Organization
   	end
 
 
@@ -26,7 +26,7 @@ class API::Organization < Grape::API
   	  get do
   	    result = Org::GetOrganization.call(organization_id: params[:id])
   	    error!(result.error, :not_found) if result.failure?
-        Organization.represent(result.organization)
+        API::Entities::Organization.represent(result.organization)
   	  end
   	end 
 
@@ -39,14 +39,14 @@ class API::Organization < Grape::API
   		requires :description,
   				  type: String,
   				  desc: 'Description of the company'
-  		requires :type,
+  		requires :org_type,
   				  type: String,
   				  desc: 'type of company' 
   	end
   	post do
   	  result = Org::CreateOrganization.call(title: params[:title],
                                        description: params[:description],
-                                       type: params[:type] )
+                                       org_type: params[:org_type] )
   	  error!(result.error, :unprocessable_entity) if result.failure? 
   	end
 
@@ -62,7 +62,7 @@ class API::Organization < Grape::API
       optional :description,
                 type: String,
                 desc: 'Description of the company'
-      optional :type,
+      optional :org_type,
                 type: String,
                 desc: 'type of company' 
     end
@@ -70,7 +70,7 @@ class API::Organization < Grape::API
       put do
         result = Org::UpdateOrganization.call(title: params[:title],
                                          description: params[:description],
-                                         type: params[:type] )
+                                         org_type: params[:org_type] )
         error!(result.error, :unprocessable_entity) if result.failure? 
       end
     end

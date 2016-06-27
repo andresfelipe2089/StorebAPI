@@ -29,7 +29,7 @@ module Org
     	{
     	  title: context.title,
     	  description: context.description,
-    	  type: context.type
+    	  org_type: context.org_type
     	}
     end
   end
