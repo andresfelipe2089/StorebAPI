@@ -15,4 +15,5 @@ describe API::Organization do
       expect(response.body).to eq organization.to_json
     end
   end
+  
 end

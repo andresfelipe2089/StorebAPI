@@ -7,3 +7,4 @@ RSpec.describe Organization, type: :model do
 
     expect(Organization.ordered_by_title).to eq([company, empresa])
   end
+end
