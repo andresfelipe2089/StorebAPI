@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :addresses
   resources :organizations
 
-  mount API::Organization => '/'
+  mount API::Organization => '/api/'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

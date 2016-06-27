@@ -1,4 +1,4 @@
-module Organization
+module Org
   class GetOrganization
     include Interactor
 

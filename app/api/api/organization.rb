@@ -9,7 +9,7 @@ class API::Organization < Grape::API
 
   	desc 'Return all the organizations'
   	get do
-  	  result = Organization::GetOrganizations.call
+  	  result = Org::GetOrganizations.call
       error!(result.error, :not_found) if result.failure?
       present results.organizations, with: Organization
   	end
@@ -24,7 +24,7 @@ class API::Organization < Grape::API
   	end
   	route_param :id do
   	  get do
-  	    result = Organization::GetOrganization.call(organization_id: params[:id])
+  	    result = Org::GetOrganization.call(organization_id: params[:id])
   	    error!(result.error, :not_found) if result.failure?
         Organization.represent(result.organization)
   	  end
@@ -44,7 +44,7 @@ class API::Organization < Grape::API
   				  desc: 'type of company' 
   	end
   	post do
-  	  result = Organization::CreateOrganization.call(title: params[:title],
+  	  result = Org::CreateOrganization.call(title: params[:title],
                                        description: params[:description],
                                        type: params[:type] )
   	  error!(result.error, :unprocessable_entity) if result.failure? 
@@ -68,7 +68,7 @@ class API::Organization < Grape::API
     end
     route_param :id do
       put do
-        result = Organization::UpdateOrganization.call(title: params[:title],
+        result = Org::UpdateOrganization.call(title: params[:title],
                                          description: params[:description],
                                          type: params[:type] )
         error!(result.error, :unprocessable_entity) if result.failure? 
@@ -85,7 +85,7 @@ class API::Organization < Grape::API
     end
     route_param :id do
       delete do
-        result = Organization::DeleteOrganization.call(organization_id: params[:id])
+        result = Org::DeleteOrganization.call(organization_id: params[:id])
         error!(result.error, :unprocessable_entity) if result.failure? 
       end
     end
