@@ -1,4 +1,4 @@
-class Space < Grape::Entity
+class Booking < Grape::Entity
 	expose :space, using: :Space
 	expose :organization, using: :Organization
 	expose :start_date, documentation: { type: 'timestamp', desc: 'the start date for thebooking' }
