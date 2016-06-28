@@ -70,7 +70,8 @@ class API::OrganizationApi < Grape::API
       put do
         result = Org::UpdateOrganization.call(title: params[:title],
                                          description: params[:description],
-                                         org_type: params[:org_type] )
+                                         org_type: params[:org_type],
+                                         organization_id: params[:id] )
         error!(result.error, :unprocessable_entity) if result.failure? 
       end
     end

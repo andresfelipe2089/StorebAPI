@@ -11,7 +11,7 @@ module Org
     def create_organization 
     	@organization ||= ::Organization.new(organization_params)
 
-    	if organization.save
+    	if @organization.save
     		context.organization = @organization
     		return true
     	end
