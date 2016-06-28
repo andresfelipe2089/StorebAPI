@@ -8,7 +8,7 @@ describe Org::GetOrganization, type: :interactor do
   let(:id) { org.id }
 
   describe '#call' do
-    subject { described_class.call(id: id) }
+    subject { described_class.call(organization_id: id) }
 
     context 'get organization by id' do
 

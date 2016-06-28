@@ -6,7 +6,6 @@ describe API::OrganizationApi do
     it 'returns all the organizations' do
       get '/api/organizations'
       expect(response.status).to eq(200)
-      ##expect(JSON.parse(response.body)).to eq []
     end
   end
 
