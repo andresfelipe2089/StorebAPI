@@ -6,3 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+org1 = Organization.create(title: 'compay', description: 'none', org_type: 'type org')
+org2 = Organization.create(title: 'compay 2', description: 'none', org_type: 'type org')
+org3 = Organization.create(title: 'compay 3', description: 'none', org_type: 'type org')

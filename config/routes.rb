@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
-  resources :bookings
-  resources :spaces
-  resources :stores
-  resources :addresses
-  resources :organizations
+  
 
   mount API::OrganizationApi => '/api/'
   # The priority is based upon order of creation: first created -> highest priority.
