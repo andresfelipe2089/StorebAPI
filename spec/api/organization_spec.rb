@@ -10,8 +10,9 @@ describe API::OrganizationApi do
   end
 
   context 'GET /organizations/:id' do
+    let(:organization) { create(:organization) }
+
     it 'returns an organization by id' do
-      organization = Organization.create!(title: 'hola', description: 'me gusta', org_type: 'funciona')
       get "/api/organizations/#{organization.id}"
       expect(response.status).to eq (200)
     end

@@ -1,7 +1,4 @@
 describe Org::GetOrganization, type: :interactor do
-  before do
-    Rails.application.load_seed
-  end
 
   org = Organization.create!(title: 'test', description: 'test', org_type: 'none')
 
@@ -18,3 +15,4 @@ describe Org::GetOrganization, type: :interactor do
     end  
   end
 end
+

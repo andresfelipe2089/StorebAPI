@@ -1,7 +1,4 @@
 describe Org::GetOrganizations, type: :interactor do
-  before do
-    Rails.application.load_seed
-  end
 
   describe '#call' do
     subject { described_class.call }
@@ -10,6 +7,10 @@ describe Org::GetOrganizations, type: :interactor do
 
       it 'is a success ' do
         expect(subject).to be_a_success
+      end
+
+      it 'is a success ' do
+        expect(subject.organizations).to be_a ActiveRecord::Relation
       end
     end  
   end
