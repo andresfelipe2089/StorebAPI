@@ -3,5 +3,5 @@ class Organization < ActiveRecord::Base
 	belongs_to :booking
 
 	validates :title, :description, :org_type, presence: true
-	validates_associated :store
+	#validates_associated :store
 end

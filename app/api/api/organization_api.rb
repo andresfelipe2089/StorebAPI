@@ -26,7 +26,7 @@ class API::OrganizationApi < Grape::API
   	  get do
   	    result = Org::GetOrganization.call(organization_id: params[:id])
   	    error!(result.error, :not_found) if result.failure?
-        API::Entities::Organization.represent(result.organization)
+        Entities::Organization.represent(result.organization)
   	  end
   	end 
 

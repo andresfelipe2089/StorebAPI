@@ -1,9 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe Organization, type: :model do
-   it "orders by title" do
-    company = Organization.create!(title: "company", description: "ninguna", type: "basuras")
-    empresa = Organization.create!(title: "empresa", description: "ninguna", type: "fiestas")
-    expect(Organization.ordered_by_title).to eq([company, empresa])
+  describe Organization, type: :model do
+    describe :validations do
+      specify { expect(build(:organization)).to be_valid }
+      specify { expect(build(:organization, description: 'Something')).to be_valid }
+      specify { expect(build(:organization, title: 3)).not_to be_valid }
+      specify { expect(build(:organization, org_type: true)).not_to be_valid }
+      specify { expect(build(:organization, title: nil)).not_to be_valid }
+      specify { expect(build(:organization, org_type: nil)).not_to be_valid }
   end
 end
